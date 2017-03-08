@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import find_packages, setup
 from Cython.Build import cythonize
 import os
 from codecs import open
@@ -7,18 +7,16 @@ import numpy
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Get the long description from the README file
-with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name="ziphmm",
-    version="0.0.0",
-    setup_requires=["cython>=0.x"],
-    packages=["ziphmm"],
+    version="0.1.0",
+    packages=find_packages(),
     ext_modules=cythonize([
         "ziphmm/cython_funcs.pyx",
         ]),
-    install_requires=["numpy"],
     include_dirs=[numpy.get_include()],
 
     # metadata for upload to PyPI
